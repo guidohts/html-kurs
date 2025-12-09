@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dienstag</title>
+    <style>
+        body {
+            background-color: silver;
+        }
+
+        canvas {
+            border: solid thin salmon;
+        }
+
+        #div1 {
+            background-image: url('astronomy-1867616_1280.jpg');
+            padding: 20px;
+            border: solid 15px blue;
+            border-radius: 20px;
+            margin-bottom: 30px;
+
+        }
+
+        #div2 {
+            background-image: url('carnival-476816_1280.jpg');
+            padding: 20px;
+            border: solid 15px pink;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        #div3 {
+            padding: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: xx-large;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("DOMContentLoaded");
+            const canvas = document.getElementById("canvas1");
+            const ctx = canvas.getContext("2d");
+
+            ctx.fillRect(25, 25, 100, 100);
+            // ctx.clearRect(45, 45, 60, 60);
+            // ctx.strokeRect(50, 50, 50, 50);
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="div1">
+        <h1 style="color: white;">Das Weltall</h1>
+    </div>
+    <div id="div3">
+        Keine Ahnung
+    </div>
+    <div id="div2">
+        <h1>Hier geht's rund</h1>
+    </div>
+    <canvas id="canvas1" width="300" height="300">
+
+    </canvas>
+
+</body>
+
+</html>
