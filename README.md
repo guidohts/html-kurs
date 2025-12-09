@@ -36,6 +36,26 @@ Ein Link zu einer andere Seite auf deiner Website. `<a>`steht für Anker.
 `<a href="https://www.hochtaunusschule.de">Hochtaunusschule</a>`
 Ein Link zu einer externen Seite.
 
+```html
+<table>
+    <tr>
+        <th>Überschrift 1</th>
+        <th>Überschrift 2</th>
+    </tr>
+    <tr>
+        <td>Zelle 1</td>
+        <td>Zelle 2</td>
+    </tr>
+    <tr>
+        <td>Zelle 3</td>
+        <td>Zelle 4</td>
+    </tr>
+</table>
+```
+
+Eine Tabelle
+
+
 ## Formatierung
 
 Du kannst deine Seite mit Cascading Style Sheets (CSS) formatieren.
