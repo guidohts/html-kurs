@@ -96,3 +96,8 @@ Du kannst Klassen definieren. Diese Klassen kannst du beliebigen Elementen zuwei
 <p class="red">Mein Absatz</p>
 <div class="red">Mein Abschnitt</div>
 ```
+
+
+## Hosting mit GitHub
+
+Du kannst die Webseite abrufen unter [https://guidohts.github.io/html-kurs](https://guidohts.github.io/html-kurs/)
