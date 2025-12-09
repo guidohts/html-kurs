@@ -27,7 +27,7 @@ Abschnitte dürfen geschachtelt werden:
 
 `<div><div>Das ist ein Abschnitt</div></div>`
 
-`<img src="bild.jpg" alt="Mein Bild">`
+`<img src="images/puppies/puppie_1961613.png" alt="puppy">`
 So kannst du ein Bild einfügen. Das Attribut `alt` ist wichtig, weil dieser Text angezeigt wird, falls das Bild nicht geladen werden kann. Wichtig ist es auch für Blinde, die Bilder nicht sehen können, aber sich den Text vorlesen lassen.
 
 `<a href="leer.html">Leer</a>`
