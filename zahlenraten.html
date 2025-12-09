@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Zahlenraten-Spiel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="number"] {
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            width: 150px;
+            text-align: center;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .ergebnis {
+            margin-top: 20px;
+            font-weight: bold;
+            min-height: 20px; /* Hält den Platz frei */
+        }
+        .neues-spiel {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🔢 Zahlenraten</h1>
+        <p>Ich habe mir eine Zahl zwischen 1 und 100 ausgedacht. Rate, welche es ist! Du hast 10 Versuche.</p>
+
+        <div class="rate-form">
+            <input type="number" id="rateFeld" min="1" max="100" placeholder="Deine Zahl">
+            <button id="rateKnopf">Raten</button>
+        </div>
+
+        <div class="ergebnis">
+            <p id="letzteRate"></p>
+            <p id="hinweis"></p>
+            <p id="versuche"></p>
+        </div>
+
+        <div class="neues-spiel" id="neuesSpiel">
+            <button onclick="neuesSpielStarten()">Neues Spiel</button>
+        </div>
+    </div>
+
+    <script>
+        let zufallsZahl = Math.floor(Math.random() * 100) + 1;
+        let versuchsZaehler = 1;
+        const maxVersuche = 10;
+
+        const rateFeld = document.getElementById('rateFeld');
+        const rateKnopf = document.getElementById('rateKnopf');
+        const letzteRate = document.getElementById('letzteRate');
+        const hinweis = document.getElementById('hinweis');
+        const versucheAnzeige = document.getElementById('versuche');
+        const neuesSpielButtonDiv = document.getElementById('neuesSpiel');
+
+        // Funktion zum Überprüfen der Eingabe
+        function ratePruefen() {
+            const benutzerRate = Number(rateFeld.value);
+
+            // Zeigt die bisherigen Versuche an
+            letzteRate.textContent = 'Deine letzte Rate: ' + benutzerRate;
+            versucheAnzeige.textContent = `Versuch: ${versuchsZaehler} von ${maxVersuche}`;
+
+            if (benutzerRate === zufallsZahl) {
+                // Spieler hat gewonnen
+                hinweis.textContent = '🎉 Glückwunsch! Du hast die Zahl richtig erraten!';
+                hinweis.style.backgroundColor = 'lightgreen';
+                spielBeenden();
+            } else if (versuchsZaehler === maxVersuche) {
+                // Spieler hat verloren
+                hinweis.textContent = `😭 Spiel vorbei! Die gesuchte Zahl war ${zufallsZahl}.`;
+                hinweis.style.backgroundColor = 'lightcoral';
+                spielBeenden();
+            } else {
+                // Hinweis geben (zu hoch oder zu niedrig)
+                if (benutzerRate < zufallsZahl) {
+                    hinweis.textContent = 'Zu niedrig! Versuche es höher.';
+                    hinweis.style.backgroundColor = 'lightblue';
+                } else if (benutzerRate > zufallsZahl) {
+                    hinweis.textContent = 'Zu hoch! Versuche es tiefer.';
+                    hinweis.style.backgroundColor = 'lightblue';
+                }
+            }
+            
+            versuchsZaehler++;
+            rateFeld.value = ''; // Eingabefeld leeren
+            rateFeld.focus();    // Cursor zurück ins Feld setzen
+        }
+
+        // Event-Listener für den Raten-Knopf
+        rateKnopf.addEventListener('click', ratePruefen);
+
+        // Event-Listener, um mit Enter zu raten
+        rateFeld.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                ratePruefen();
+            }
+        });
+
+        // Funktion zum Deaktivieren der Eingabe und Anzeigen des Neustart-Buttons
+        function spielBeenden() {
+            rateFeld.disabled = true;
+            rateKnopf.disabled = true;
+            neuesSpielButtonDiv.style.display = 'block';
+        }
+
+        // Funktion zum Starten eines neuen Spiels
+        function neuesSpielStarten() {
+            versuchsZaehler = 1;
+            zufallsZahl = Math.floor(Math.random() * 100) + 1;
+
+            // Anzeigen zurücksetzen
+            letzteRate.textContent = '';
+            hinweis.textContent = '';
+            hinweis.style.backgroundColor = 'transparent';
+            versucheAnzeige.textContent = '';
+
+            // Spielsteuerung reaktivieren
+            rateFeld.disabled = false;
+            rateKnopf.disabled = false;
+            neuesSpielButtonDiv.style.display = 'none';
+            rateFeld.value = '';
+            rateFeld.focus();
+        }
+    </script>
+
+</body>
+</html>
